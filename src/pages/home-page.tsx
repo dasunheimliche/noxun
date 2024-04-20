@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { RotateCcw } from "lucide-react";
 
 import useSearchPosts from "@/hooks/useSearchPosts";
 import useAllPosts from "@/hooks/useAllPosts";
@@ -10,17 +11,19 @@ import SearchInput from "@/components/search-input";
 import PostListItem from "@/components/post-list-item";
 import PaginationButtons from "@/components/pagination";
 import Loading from "@/components/loading";
+import ErrorMessage from "@/components/errorMessage";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { isLoading, totalPages, getPostsByPage } = useAllPosts();
+  const { isLoading, totalPages, getPostsByPage, error } = useAllPosts();
   const {
     isLoading: isLoadingSearchedPosts,
     totalPages: totalPagesSearched,
     getPostsByPage: getPostsByPageSearched,
     handleSearchChange,
     searchTerm,
+    error: searchedPostsError,
   } = useSearchPosts();
 
   const posts = searchTerm
@@ -58,6 +61,7 @@ export default function Home() {
       <Separator />
       <main className="mb-10">
         <div className="min-h-[25rem] relative mb-10">
+          {(error || searchedPostsError) && <ErrorMessage />}
           {posts.map((post: Post) => {
             return <PostListItem post={post} key={post.id} />;
           })}

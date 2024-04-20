@@ -3,13 +3,16 @@ import { Link, useParams } from "react-router-dom";
 import { CircleArrowLeft } from "lucide-react";
 import Loading from "@/components/loading";
 import usePostDetails from "@/hooks/usePostDetails";
+import ErrorMessage from "@/components/errorMessage";
 
 export default function PostDetailsPage() {
   const { id } = useParams();
 
-  const { post, comments, isLoading } = usePostDetails(Number(id));
+  const { post, comments, isLoading, error } = usePostDetails(Number(id));
 
   if (isLoading) return <Loading />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <div className="mt-20">
