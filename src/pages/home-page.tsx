@@ -7,7 +7,7 @@ import { Post } from "@/types";
 
 import Separator from "@/components/separator";
 import SearchInput from "@/components/search-input";
-import PostItemList from "@/components/post-item-list";
+import PostListItem from "@/components/post-list-item";
 import PaginationButtons from "@/components/pagination";
 import Loading from "@/components/loading";
 
@@ -59,7 +59,7 @@ export default function Home() {
       <main className="mb-10">
         <div className="min-h-[25rem] relative mb-10">
           {posts.map((post: Post) => {
-            return <PostItemList post={post} key={post.id} />;
+            return <PostListItem post={post} key={post.id} />;
           })}
         </div>
         <div className="flex gap-2 justify-center">

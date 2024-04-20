@@ -16,6 +16,21 @@ html {
   /* font-family: "Quicksand", sans-serif; */
 }
 
+/* Oculta la barra de desplazamiento */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Personaliza el estilo de la barra de desplazamiento */
+html::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 #root {
   display: flex;
   flex-direction: column;

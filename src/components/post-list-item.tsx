@@ -6,7 +6,7 @@ import { Post } from "@/types";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-export default function PostItemList({ post }: { post: Post }) {
+export default function PostListItem({ post }: { post: Post }) {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
   function handleToggleAccordion() {
@@ -39,10 +39,10 @@ export default function PostItemList({ post }: { post: Post }) {
         <div
           className={cn(
             "relative h-0 overflow-hidden transition-all text-wrap flex justify-between",
-            !isCollapsed ? "h-[6rem] mt-5" : ""
+            !isCollapsed ? "h-[4.5rem] mt-5" : ""
           )}
         >
-          <div className="max-w-[65%] text-[#1d2a42c4] font-medium first-letter:capitalize">
+          <div className="max-w-[65%] text-[#1d2a42c4] font-medium first-letter:capitalize line-clamp-3 overflow-hidden">
             {post.body}
           </div>
           <Link
