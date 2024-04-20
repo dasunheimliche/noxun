@@ -12,7 +12,7 @@ export default function PaginationButton({
   const className = cn(
     "hover:underline hover:underline-offset-2",
     isActive
-      ? "bg-[#101727] rounded-full w-9 h-9 p-1 text-white flex justify-center items-center"
+      ? "bg-primary rounded-full w-9 h-9 p-1 text-white flex justify-center items-center"
       : ""
   );
 

@@ -26,9 +26,9 @@ export default function PostDetailsPage() {
         </Link>
       </div>
 
-      <h2 className="text-[2rem] text-[#101727] font-medium first-letter:capitalize mb-5">
+      <h1 className="text-[2rem] text-primary font-medium first-letter:capitalize mb-5">
         {post?.title}
-      </h2>
+      </h1>
       <p className="first-letter:capitalize mb-6 text-[#1d2a42c4] font-semibold">
         {post?.body}
       </p>

@@ -47,7 +47,7 @@ export default function Home() {
     <>
       <header className="mt-36 mb-2 h-32 flex items-end justify-start py-4">
         <div>
-          <h1 className="text-[4rem] text-[#101727] font-medium">Noxun</h1>
+          <h1 className="text-[4rem] text-primary font-medium">Noxun</h1>
           <p className="text-[#1d2a42c4] mb-6 font-semibold">
             Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
             consectetur, adipisci velit...
