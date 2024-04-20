@@ -18,7 +18,7 @@ export default function PostItemList({ post }: { post: Post }) {
         <div className="pr-2 flex justify-between">
           <div
             className={cn(
-              "first-letter:capitalize",
+              "first-letter:capitalize max-w-[85%]",
               isCollapsed ? "underline underline-offset-2" : ""
             )}
           >
@@ -35,13 +35,13 @@ export default function PostItemList({ post }: { post: Post }) {
         <div
           className={cn(
             "relative h-0 overflow-hidden transition-all text-wrap flex justify-between",
-            isCollapsed ? "h-[5.5rem] mt-5" : ""
+            isCollapsed ? "h-[6rem] mt-5" : ""
           )}
         >
-          <div className="w-[65%]">{post.body}</div>
+          <div className="max-w-[65%]">{post.body}</div>
           <Link
             to={`posts/${post.id}`}
-            className="absolute flex gap-2 items-center bottom-0 font-bold right-0 mb-4 bg-[#101727e0] hover:bg-[#101727] py-2 px-4 text-sm text-yellow-50"
+            className="absolute flex gap-2 items-center bottom-0 font-bold right-0 mb-1 bg-[#101727e0] hover:bg-[#101727] py-2 px-4 text-sm text-yellow-50"
           >
             <div>Visitar</div>
             <ArrowUpRight />

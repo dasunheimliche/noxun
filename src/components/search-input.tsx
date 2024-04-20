@@ -10,7 +10,7 @@ export default function SearchInput({ onChange, value }: SearchInputProps) {
       type="text"
       onChange={onChange}
       value={value}
-      placeholder="search..."
+      placeholder="buscar..."
     />
   );
 }
