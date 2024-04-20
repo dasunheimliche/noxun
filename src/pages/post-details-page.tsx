@@ -4,34 +4,21 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CircleArrowLeft } from "lucide-react";
 import Loading from "@/components/loading";
+import usePostDetails from "@/hooks/usePostDetails";
 
 export default function PostDetailsPage() {
-  const [post, setPost] = useState<Post | null>();
-  const [comments, setComments] = useState<[]>();
   const { id } = useParams();
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .then((response) => response.json())
-      .then((data) => setPost(data));
-  }, [id]);
+  const { post, comments, isLoading } = usePostDetails(Number(id));
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
-      .then((response) => response.json())
-      .then((data) => setComments(data));
-  }, [id]);
-
-  if (!post) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
   return (
     <div className="mt-20">
       <div className="flex justify-end mb-10">
         <Link to={"/"}>
           <CircleArrowLeft
-            className="cursor-pointer"
+            className="cursor-pointer -mr-[0.25rem]"
             color="#101727"
             size={"3.2rem"}
             strokeWidth={0.5}
@@ -40,9 +27,11 @@ export default function PostDetailsPage() {
       </div>
 
       <h2 className="text-[2rem] text-[#101727] font-medium first-letter:capitalize mb-5">
-        {post.title}
+        {post?.title}
       </h2>
-      <p className="first-letter:capitalize mb-6">{post.body}</p>
+      <p className="first-letter:capitalize mb-6 text-[#1d2a42c4] font-semibold">
+        {post?.body}
+      </p>
       <div className="mb-24">
         <div className="mb-2">Comentarios ({comments?.length})</div>
         <Separator />

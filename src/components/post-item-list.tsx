@@ -16,7 +16,7 @@ export default function PostItemList({ post }: { post: Post }) {
   return (
     <div>
       <div
-        className="py-4 group cursor-pointer"
+        className="py-4 group cursor-pointer font-medium"
         onClick={handleToggleAccordion}
       >
         <div className="pr-2 flex justify-between">
@@ -42,7 +42,9 @@ export default function PostItemList({ post }: { post: Post }) {
             !isCollapsed ? "h-[6rem] mt-5" : ""
           )}
         >
-          <div className="max-w-[65%]">{post.body}</div>
+          <div className="max-w-[65%] text-[#1d2a42c4] font-medium first-letter:capitalize">
+            {post.body}
+          </div>
           <Link
             to={`posts/${post.id}`}
             className="absolute flex gap-2 items-center bottom-0 font-bold right-0 mb-1 bg-[#101727e0] hover:bg-[#101727] py-2 px-4 text-sm text-yellow-50"

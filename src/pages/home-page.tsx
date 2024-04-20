@@ -14,10 +14,9 @@ import Loading from "@/components/loading";
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { isLoading, error, totalPages, getPostsByPage } = useAllPosts();
+  const { isLoading, totalPages, getPostsByPage } = useAllPosts();
   const {
     isLoading: isLoadingSearchedPosts,
-    error: errorSearchedPosts,
     totalPages: totalPagesSearched,
     getPostsByPage: getPostsByPageSearched,
     handleSearchChange,
