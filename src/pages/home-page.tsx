@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { RotateCcw } from "lucide-react";
 
 import useSearchPosts from "@/hooks/useSearchPosts";
 import useAllPosts from "@/hooks/useAllPosts";
