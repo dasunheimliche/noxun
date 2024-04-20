@@ -1,6 +1,4 @@
 import Separator from "@/components/separator";
-import { Post } from "@/types";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CircleArrowLeft } from "lucide-react";
 import Loading from "@/components/loading";
