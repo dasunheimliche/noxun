@@ -37,12 +37,7 @@ const useAllPosts = () => {
     [posts]
   );
 
-  const arrayPages = useMemo(
-    () => Array.from({ length: totalPages }, (_, index) => index + 1),
-    [totalPages]
-  );
-
-  return { posts, isLoading, error, arrayPages, getPostsByPage };
+  return { posts, isLoading, error, totalPages, getPostsByPage };
 };
 
 export default useAllPosts;

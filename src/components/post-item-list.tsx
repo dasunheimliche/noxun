@@ -7,19 +7,23 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function PostItemList({ post }: { post: Post }) {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+
+  function handleToggleAccordion() {
+    setIsCollapsed(!isCollapsed);
+  }
 
   return (
-    <div key={post.id}>
+    <div>
       <div
         className="py-4 group cursor-pointer"
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={handleToggleAccordion}
       >
         <div className="pr-2 flex justify-between">
           <div
             className={cn(
               "first-letter:capitalize max-w-[85%]",
-              isCollapsed ? "underline underline-offset-2" : ""
+              !isCollapsed ? "underline underline-offset-2" : ""
             )}
           >
             {post.title}
@@ -28,14 +32,14 @@ export default function PostItemList({ post }: { post: Post }) {
             strokeWidth={1}
             className={cn(
               "transition-all opacity-35 group-hover:opacity-65",
-              isCollapsed ? "rotate-180" : ""
+              !isCollapsed ? "rotate-180" : ""
             )}
           />
         </div>
         <div
           className={cn(
             "relative h-0 overflow-hidden transition-all text-wrap flex justify-between",
-            isCollapsed ? "h-[6rem] mt-5" : ""
+            !isCollapsed ? "h-[6rem] mt-5" : ""
           )}
         >
           <div className="max-w-[65%]">{post.body}</div>

@@ -1,26 +1,36 @@
 import { cn } from "@/lib/utils";
 import useIsSmallScreen from "@/hooks/useIsSmallScreen";
+import PaginationButton from "./pagination-button";
+import PaginationNavButton from "./pagination-nav-button";
 
-const PaginationButtons = ({ totalPages, currentPage, onPageChange }: any) => {
+interface PaginationButtonsProps {
+  totalPages: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
+
+const PaginationButtons = ({
+  totalPages,
+  currentPage,
+  onPageChange,
+}: PaginationButtonsProps) => {
   const isSmallScreen = useIsSmallScreen();
-
-  const MAX_BUTTONS = isSmallScreen ? 1 : 3;
+  const maxButtons = isSmallScreen ? 1 : 3;
 
   const getPages = () => {
     const pages = [];
 
-    let startPage = Math.max(1, currentPage - Math.floor(MAX_BUTTONS / 2));
-    let endPage = Math.min(totalPages, startPage + MAX_BUTTONS - 1);
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
     if (startPage > 1) {
       pages.push(
-        <button
-          className="hover:underline hover:underline-offset-2"
+        <PaginationButton
           key={1}
+          page={1}
           onClick={() => onPageChange(1)}
-        >
-          1
-        </button>
+          isActive={false}
+        />
       );
       if (startPage > 2) {
         pages.push(<span key="elipsis-start">...</span>);
@@ -29,18 +39,12 @@ const PaginationButtons = ({ totalPages, currentPage, onPageChange }: any) => {
 
     for (let page = startPage; page <= endPage; page++) {
       pages.push(
-        <button
+        <PaginationButton
           key={page}
+          page={page}
           onClick={() => onPageChange(page)}
-          className={cn(
-            "hover:underline hover:underline-offset-2",
-            page === currentPage
-              ? " bg-[#101727] rounded-full w-9 h-9 p-1 text-white flex justify-center items-center"
-              : ""
-          )}
-        >
-          {page}
-        </button>
+          isActive={page === currentPage}
+        />
       );
     }
 
@@ -49,13 +53,12 @@ const PaginationButtons = ({ totalPages, currentPage, onPageChange }: any) => {
         pages.push(<span key="elipsis-end">...</span>);
       }
       pages.push(
-        <button
-          className="hover:underline hover:underline-offset-2"
+        <PaginationButton
           key={totalPages}
+          page={totalPages}
           onClick={() => onPageChange(totalPages)}
-        >
-          {totalPages}
-        </button>
+          isActive={false}
+        />
       );
     }
 
@@ -64,17 +67,11 @@ const PaginationButtons = ({ totalPages, currentPage, onPageChange }: any) => {
 
   return (
     <>
-      <button
-        className={cn(
-          "hover:underline hover:underline-offset-2 cursor-pointer",
-          currentPage <= 1 ? "hover:no-underline opacity-35" : ""
-        )}
-        key="prev"
+      <PaginationNavButton
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage <= 1}
-      >
-        Anterior
-      </button>
+        label="Anterior"
+      />
       <div
         className={cn(
           "flex gap-4 justify-center min-w-64",
@@ -83,17 +80,11 @@ const PaginationButtons = ({ totalPages, currentPage, onPageChange }: any) => {
       >
         {getPages()}
       </div>
-      <button
-        className={cn(
-          "hover:underline hover:underline-offset-2",
-          currentPage >= totalPages ? "hover:no-underline opacity-35" : ""
-        )}
-        key="next"
+      <PaginationNavButton
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
-      >
-        Siguiente
-      </button>
+        label="Siguiente"
+      />
     </>
   );
 };

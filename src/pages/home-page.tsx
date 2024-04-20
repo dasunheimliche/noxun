@@ -14,11 +14,11 @@ import Loading from "@/components/loading";
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { isLoading, error, arrayPages, getPostsByPage } = useAllPosts();
+  const { isLoading, error, totalPages, getPostsByPage } = useAllPosts();
   const {
     isLoading: isLoadingSearchedPosts,
     error: errorSearchedPosts,
-    arrayPages: arrayPagesSearched,
+    totalPages: totalPagesSearched,
     getPostsByPage: getPostsByPageSearched,
     handleSearchChange,
     searchTerm,
@@ -27,7 +27,8 @@ export default function Home() {
   const posts = searchTerm
     ? getPostsByPageSearched(currentPage)
     : getPostsByPage(currentPage);
-  const pages = searchTerm ? arrayPagesSearched : arrayPages;
+
+  const numPages = searchTerm ? totalPagesSearched : totalPages;
 
   function handlePageSelection(page: number) {
     setCurrentPage(page);
@@ -64,7 +65,7 @@ export default function Home() {
         </div>
         <div className="flex gap-2 justify-center">
           <PaginationButtons
-            totalPages={pages.length}
+            totalPages={numPages}
             currentPage={currentPage}
             onPageChange={handlePageSelection}
           />
